@@ -1,7 +1,7 @@
 # Creating a Pre-Sensor Script for Firewall CI Identification
 
-The full text of the original script could potentially be subject to
-copyright restrictions. Therefore, these instructions describe how to
+The full text of the original script could be subject to copyright 
+restrictions. Therefore, these instructions describe how to
 create the script directly in your ServiceNow instance.
 
 ## Instructions
