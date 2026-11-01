@@ -1,0 +1,882 @@
+<?xml version="1.0" encoding="UTF-8"?><unload unload_date="2026-11-01 09:03:51">
+<sys_remote_update_set action="INSERT_OR_UPDATE">
+<application display_value="Global">global</application>
+<application_name>Global</application_name>
+<application_scope>global</application_scope>
+<application_version/>
+<collisions/>
+<commit_date/>
+<deleted/>
+<description>Discovery pattern for Barracuda CloudGen Firewalls</description>
+<inserted/>
+<name>Barracuda CloudGen Firewall</name>
+<origin_sys_id/>
+<parent display_value=""/>
+<release_date/>
+<remote_base_update_set display_value=""/>
+<remote_parent_id/>
+<remote_sys_id>190e539597d8d3d0a4c3ba6de053affd</remote_sys_id>
+<state>loaded</state>
+<summary/>
+<sys_class_name>sys_remote_update_set</sys_class_name>
+<sys_created_by>karel.benes</sys_created_by>
+<sys_created_on>2026-11-01 09:03:50</sys_created_on>
+<sys_id>6a8e53d997d8d3d0a4c3ba6de053af36</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_updated_by>karel.benes</sys_updated_by>
+<sys_updated_on>2026-11-01 09:03:50</sys_updated_on>
+<update_set display_value=""/>
+<update_source display_value=""/>
+<updated/>
+</sys_remote_update_set>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>sa_pattern_5324df9c97c8d3dca4c3ba6de053afcb</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sa_pattern"><sa_pattern action="INSERT_OR_UPDATE"><active>true</active><ci_type>cmdb_ci_ip_firewall</ci_type><cpattern_type>3</cpattern_type><description/><directory>false</directory><enforce_proc_classy>false</enforce_proc_classy><invoke_per_account>false</invoke_per_account><metadata_id>5324df9c97c8d3dca4c3ba6de053afcb</metadata_id><name>Barracuda CloudGen Firewall</name><ndl>pattern {&#13;
+	metadata {&#13;
+		id = "5324df9c97c8d3dca4c3ba6de053afcb"&#13;
+		name = "Barracuda CloudGen Firewall"&#13;
+		description = "Discovery pattern for Barracuda CloudGen Firewalls"&#13;
+		citype = "cmdb_ci_ip_firewall"&#13;
+	}&#13;
+	identification {&#13;
+		name = "discovery"&#13;
+		entry_point {type = "*"}&#13;
+		find_process_strategy {strategy = NONE}&#13;
+		step {&#13;
+			name = "Get name"&#13;
+			run_snmp_to_var {&#13;
+				snmp_object_ids = "1.3.6.1.2.1.1.5"&#13;
+				var_names = "sysName"&#13;
+				if_not_found_do = nop {}&#13;
+				cache_flag = 0&#13;
+			}&#13;
+		}&#13;
+		step {&#13;
+			name = "Set name"&#13;
+			set_attr {&#13;
+				"cmdb_ci_ip_firewall[*].name"&#13;
+				get_attr {"sysName"}&#13;
+			}&#13;
+		}&#13;
+		step {&#13;
+			name = "Get basic info"&#13;
+			comment = "iso.org.dod.internet.mgmt.mib-2.system.sysNamehttp://oidref.com/1.3.6.1.2.1.1.5"&#13;
+			custom_operation {&#13;
+				attributes {&#13;
+					attribute {&#13;
+						name = "required_authentication"&#13;
+						value = "true"&#13;
+					}&#13;
+					attribute {&#13;
+						name = "url"&#13;
+						value = concat {&#13;
+							"https://"&#13;
+							get_attr {"computer_system.managementIP"}&#13;
+							":8443/rest/control/v1/box/info?envelope=false"&#13;
+						}&#13;
+					}&#13;
+					attribute {&#13;
+						name = "headers"&#13;
+						value = "accept: application/json"&#13;
+					}&#13;
+				}&#13;
+				sys_id_op = "99a9f95a9f3312003cb191aec32e70e9"&#13;
+				to_var_names = table {&#13;
+					name = "device"&#13;
+					col_names = "model","serialNumber","hostname"&#13;
+				}&#13;
+				parsing_strategy = custom_parsing_strategy {&#13;
+					sys_id = "512a3d5a9f3312003cb191aec32e708a"&#13;
+					rootXpath = "/root"&#13;
+					fields {&#13;
+						field {&#13;
+							col_name = "model"&#13;
+							xpath = "/root/model/text()"&#13;
+							delimiters = ""&#13;
+							position = 1&#13;
+						}&#13;
+						field {&#13;
+							col_name = "serialNumber"&#13;
+							xpath = "/root/serialNumber/text()"&#13;
+							delimiters = ""&#13;
+							position = 1&#13;
+						}&#13;
+						field {&#13;
+							col_name = "hostname"&#13;
+							xpath = "/root/hostname/text()"&#13;
+							delimiters = ""&#13;
+							position = 1&#13;
+						}&#13;
+						field {&#13;
+							col_name = "forEach"&#13;
+							for_each = "forEach"&#13;
+							delimiters = ""&#13;
+							position = 1&#13;
+						}&#13;
+					}&#13;
+				}&#13;
+				if_not_found_do = nop {}&#13;
+				is_paginated = 0&#13;
+			}&#13;
+		}&#13;
+		step {&#13;
+			name = "Set serial_number"&#13;
+			comment = "iso.org.dod.internet.mgmt.mib-2.system.sysNamehttp://oidref.com/1.3.6.1.2.1.1.5"&#13;
+			set_attr {&#13;
+				"cmdb_ci_ip_firewall[*].serial_number"&#13;
+				get_attr {"device.serialNumber"}&#13;
+			}&#13;
+		}&#13;
+		step {&#13;
+			name = "Set manufacturer"&#13;
+			set_attr {&#13;
+				"cmdb_ci_ip_firewall[*].manufacturer"&#13;
+				"Barracuda Networks, Inc."&#13;
+			}&#13;
+		}&#13;
+		step {&#13;
+			name = "Set model_id"&#13;
+			set_attr {&#13;
+				"cmdb_ci_ip_firewall[*].model_id"&#13;
+				eval {"javascript: var rtrn = '';&#13;
+var model = ${device.model};&#13;
+rtrn = model.toUpperCase();"}&#13;
+			}&#13;
+		}&#13;
+		step {&#13;
+			name = "Set model_number"&#13;
+			set_attr {&#13;
+				"cmdb_ci_ip_firewall[*].model_number"&#13;
+				eval {"javascript: var rtrn = '';&#13;
+var model = ${device.model};&#13;
+rtrn = model.toUpperCase();"}&#13;
+			}&#13;
+		}&#13;
+		step {&#13;
+			name = "Set can_route"&#13;
+			set_attr {&#13;
+				"cmdb_ci_ip_firewall[*].can_route"&#13;
+				"true"&#13;
+			}&#13;
+		}&#13;
+		step {&#13;
+			name = "Set can_switch"&#13;
+			set_attr {&#13;
+				"cmdb_ci_ip_firewall[*].can_switch"&#13;
+				"true"&#13;
+			}&#13;
+		}&#13;
+		step {&#13;
+			name = "Set can_partitionvlans"&#13;
+			set_attr {&#13;
+				"cmdb_ci_ip_firewall[*].can_partitionvlans"&#13;
+				"true"&#13;
+			}&#13;
+		}&#13;
+		step {&#13;
+			name = "Get interfaces"&#13;
+			comment = "iso.org.dod.internet.mgmt.mib-2.interfaces.ifTable
+http://iphostmonitor.com/mib/oids/rfc1213/ipForwDatagrams.html"&#13;
+			custom_operation {&#13;
+				attributes {&#13;
+					attribute {&#13;
+						name = "required_authentication"&#13;
+						value = "true"&#13;
+					}&#13;
+					attribute {&#13;
+						name = "url"&#13;
+						value = concat {&#13;
+							"https://"&#13;
+							get_attr {"computer_system.managementIP"}&#13;
+							":8443/rest/control/v1/box/net/interfaces?envelope=false"&#13;
+						}&#13;
+					}&#13;
+					attribute {&#13;
+						name = "headers"&#13;
+						value = "accept: application/json"&#13;
+					}&#13;
+				}&#13;
+				sys_id_op = "99a9f95a9f3312003cb191aec32e70e9"&#13;
+				to_var_names = "SystemVariable"&#13;
+				parsing_strategy = empty_strategy {}&#13;
+				if_not_found_do = nop {}&#13;
+				is_paginated = 0&#13;
+			}&#13;
+		}&#13;
+		step {&#13;
+			name = "Set mac_address"&#13;
+			set_attr {&#13;
+				"cmdb_ci_ip_firewall[*].mac_address"&#13;
+				eval {"javascript: /* The input arrives as text, parse it into an object first */&#13;
+var rawText = ${SystemVariable};&#13;
+var data = rawText;&#13;
+var isString = typeof rawText == \"string\";&#13;
+if (isString) {&#13;
+    data = JSON.parse(rawText);&#13;
+}&#13;
+
+/* The management IP is passed in the same way as the JSON input */&#13;
+var mgmtIp = ${computer_system.managementIP};&#13;
+
+/* Result stays empty if no interface matches */&#13;
+var foundMac = \"\";&#13;
+
+var interfaces = data.interfaces;&#13;
+var interfaceCount = interfaces.length;&#13;
+
+for (var i = 0; i &lt; interfaceCount; i++) {&#13;
+    var iface = interfaces[i];&#13;
+    var ipList = iface.ip;&#13;
+    var ipCount = ipList.length;&#13;
+
+    for (var j = 0; j &lt; ipCount; j++) {&#13;
+        var ipEntry = ipList[j];&#13;
+        var address = ipEntry.address;&#13;
+
+        /* Compare the interface address with the management IP */&#13;
+        var isMatch = (address == mgmtIp);&#13;
+        if (isMatch) {&#13;
+            foundMac = iface.mac;&#13;
+            break;&#13;
+        }&#13;
+    }&#13;
+
+    /* Stop the outer loop as soon as a MAC was found */&#13;
+    var alreadyFound = (foundMac != \"\");&#13;
+    if (alreadyFound) {&#13;
+        break;&#13;
+    }&#13;
+}&#13;
+
+rtrn = foundMac;"}&#13;
+			}&#13;
+		}&#13;
+		step {&#13;
+			name = "Transform raw interfaces table"&#13;
+			set_attr {&#13;
+				"interfacesJSON"&#13;
+				eval {"javascript: /* The input arrives as text, parse it into an object first */&#13;
+var rawText = ${SystemVariable};&#13;
+var data = rawText;&#13;
+var isString = typeof rawText == \"string\";&#13;
+if (isString) {&#13;
+    data = JSON.parse(rawText);&#13;
+}&#13;
+var interfaces = data.interfaces;&#13;
+var count = interfaces.length;&#13;
+var adapterList = [];&#13;
+var seen = {};&#13;
+
+for (var i = 0; i &lt; count; i++) {&#13;
+    var item = interfaces[i];&#13;
+
+    /* Skip loopback, it has an invalid MAC */&#13;
+    var ifType = String(item.type);&#13;
+    if (ifType == \"LOOPBACK\") {&#13;
+        continue;&#13;
+    }&#13;
+
+    var ifName = String(item.name);&#13;
+    var ifMac = String(item.mac);&#13;
+
+    /* Kernel ifindex, used only as a temporary join key within this run */&#13;
+    var ifIndex = String(item.index);&#13;
+
+    /* Skip adapters that were already added, the key is the adapter name */&#13;
+    var alreadySeen = seen[ifName] == true;&#13;
+    if (alreadySeen) {&#13;
+        continue;&#13;
+    }&#13;
+    seen[ifName] = true;&#13;
+
+    /* A dot in the name marks a VLAN subinterface, e.g. eth1.30 */&#13;
+    var virtualFlag = \"false\";&#13;
+    var dotPosition = ifName.indexOf(\".\");&#13;
+    var hasDot = dotPosition &gt;= 0;&#13;
+    if (hasDot) {&#13;
+        virtualFlag = \"true\";&#13;
+    }&#13;
+
+    var adapter = {};&#13;
+    adapter.name = ifName;&#13;
+    adapter.mac = ifMac;&#13;
+    adapter.ifIndex = ifIndex;&#13;
+    adapter.virtual = virtualFlag;&#13;
+    adapterList.push(adapter);&#13;
+}&#13;
+
+/* Wrap the list in an object and serialize it back to JSON text */&#13;
+var wrapper = {};&#13;
+wrapper.adapters = adapterList;&#13;
+var jsonText = JSON.stringify(wrapper);&#13;
+rtrn = jsonText;"}&#13;
+			}&#13;
+		}&#13;
+		step {&#13;
+			name = "Parse network adapters"&#13;
+			parse_var_to_var {&#13;
+				from_var_name = "interfacesJSON"&#13;
+				to_var_names = table {&#13;
+					name = "adapters"&#13;
+					col_names = "name","macAddress","virtual","ifIndex"&#13;
+				}&#13;
+				parsing_strategy = custom_parsing_strategy {&#13;
+					sys_id = "512a3d5a9f3312003cb191aec32e708a"&#13;
+					rootXpath = "/root"&#13;
+					fields {&#13;
+						field {&#13;
+							col_name = "name"&#13;
+							xpath = "/root/adapters/name/text()"&#13;
+							delimiters = ""&#13;
+							position = 1&#13;
+						}&#13;
+						field {&#13;
+							col_name = "macAddress"&#13;
+							xpath = "/root/adapters/mac/text()"&#13;
+							delimiters = ""&#13;
+							position = 1&#13;
+						}&#13;
+						field {&#13;
+							col_name = "virtual"&#13;
+							xpath = "/root/adapters/virtual/text()"&#13;
+							delimiters = ""&#13;
+							position = 1&#13;
+						}&#13;
+						field {&#13;
+							col_name = "ifIndex"&#13;
+							xpath = "/root/adapters/ifIndex/text()"&#13;
+							delimiters = ""&#13;
+							position = 1&#13;
+						}&#13;
+						field {&#13;
+							col_name = "forEach"&#13;
+							for_each = "forEach"&#13;
+							delimiters = ""&#13;
+							position = 1&#13;
+						}&#13;
+					}&#13;
+				}&#13;
+				if_not_found_do = nop {}&#13;
+			}&#13;
+		}&#13;
+		step {&#13;
+			name = "Set network adapters"&#13;
+			transform {&#13;
+				src_table_name = "adapters"&#13;
+				target_table_name = "cmdb_ci_network_adapter"&#13;
+				operation {&#13;
+					set_field {&#13;
+						field_name = "name"&#13;
+						value = get_attr {"adapters[].name"}&#13;
+					}&#13;
+					set_field {&#13;
+						field_name = "mac_address"&#13;
+						value = get_attr {"adapters[].macAddress"}&#13;
+					}&#13;
+					set_field {&#13;
+						field_name = "virtual"&#13;
+						value = get_attr {"adapters[].virtual"}&#13;
+					}&#13;
+					set_field {&#13;
+						field_name = "cmdb_ci"&#13;
+						value = get_attr {"device.serialNumber"}&#13;
+					}&#13;
+					set_field {&#13;
+						field_name = "correlation_id"&#13;
+						value = get_attr {"adapters[].ifIndex"}&#13;
+					}&#13;
+				}&#13;
+			}&#13;
+		}&#13;
+		step {&#13;
+			name = "Create relationship &amp; references"&#13;
+			relation_reference {&#13;
+				table1_name = "cmdb_ci_ip_firewall"&#13;
+				table2_name = "cmdb_ci_network_adapter"&#13;
+				result_table_name = "adapter_to_firewall"&#13;
+				unmatched_lines = keep&#13;
+				relation_type = "Owns::Owned by"&#13;
+				ref_direction = childToParent&#13;
+				ref_field_name = "cmdb_ci"&#13;
+			}&#13;
+		}&#13;
+		step {&#13;
+			name = "Transform raw interfaces table"&#13;
+			set_attr {&#13;
+				"adressesJSON"&#13;
+				eval {"javascript: /* The input arrives as text, parse it into an object first */&#13;
+var rawText = ${SystemVariable};&#13;
+var data = rawText;&#13;
+var isString = typeof rawText == \"string\";&#13;
+if (isString) {&#13;
+    data = JSON.parse(rawText);&#13;
+}&#13;
+var interfaces = data.interfaces;&#13;
+var count = interfaces.length;&#13;
+var addressList = [];&#13;
+
+for (var i = 0; i &lt; count; i++) {&#13;
+    var item = interfaces[i];&#13;
+
+    /* Skip loopback to stay consistent with the adapter script */&#13;
+    var ifType = String(item.type);&#13;
+    if (ifType == \"LOOPBACK\") {&#13;
+        continue;&#13;
+    }&#13;
+
+    var ifName = String(item.name);&#13;
+    var ifMac = String(item.mac);&#13;
+
+    /* Kernel ifindex, used only as a temporary join key within this run */&#13;
+    var ifIndex = String(item.index);&#13;
+
+    /* All IPv4 addresses of this adapter, the array may be empty */&#13;
+    var ipList = item.ip;&#13;
+    var hasIp = ipList &amp;&amp; ipList.length &gt; 0;&#13;
+    if (hasIp) {&#13;
+        var ipCount = ipList.length;&#13;
+        for (var j = 0; j &lt; ipCount; j++) {&#13;
+            var ipEntry = ipList[j];&#13;
+            var ipv4Object = {};&#13;
+            ipv4Object.ifName = ifName;&#13;
+            ipv4Object.ifIndex = ifIndex;&#13;
+            ipv4Object.mac = ifMac;&#13;
+            ipv4Object.family = \"4\";&#13;
+            ipv4Object.address = String(ipEntry.address);&#13;
+            ipv4Object.mask = String(ipEntry.netmask);&#13;
+            ipv4Object.scope = \"global\";&#13;
+            addressList.push(ipv4Object);&#13;
+        }&#13;
+    }&#13;
+
+    /* All IPv6 addresses of this adapter, the array may be empty */&#13;
+    var ip6List = item.ip6;&#13;
+    var hasIp6 = ip6List &amp;&amp; ip6List.length &gt; 0;&#13;
+    if (hasIp6) {&#13;
+        var ip6Count = ip6List.length;&#13;
+        for (var k = 0; k &lt; ip6Count; k++) {&#13;
+            var ip6Entry = ip6List[k];&#13;
+            var ip6Address = String(ip6Entry.address);&#13;
+
+            /* Mark link-local addresses so they can be filtered later */&#13;
+            var ip6Scope = \"global\";&#13;
+            var linkLocalPosition = ip6Address.indexOf(\"fe80\");&#13;
+            var isLinkLocal = linkLocalPosition == 0;&#13;
+            if (isLinkLocal) {&#13;
+                ip6Scope = \"link-local\";&#13;
+            }&#13;
+
+            var ipv6Object = {};&#13;
+            ipv6Object.ifName = ifName;&#13;
+            ipv6Object.ifIndex = ifIndex;&#13;
+            ipv6Object.mac = ifMac;&#13;
+            ipv6Object.family = \"6\";&#13;
+            ipv6Object.address = ip6Address;&#13;
+            ipv6Object.mask = String(ip6Entry.netmask);&#13;
+            ipv6Object.scope = ip6Scope;&#13;
+            addressList.push(ipv6Object);&#13;
+        }&#13;
+    }&#13;
+}&#13;
+
+/* Wrap the list in an object and serialize it back to JSON text */&#13;
+var wrapper = {};&#13;
+wrapper.addresses = addressList;&#13;
+var jsonText = JSON.stringify(wrapper);&#13;
+rtrn = jsonText;"}&#13;
+			}&#13;
+		}&#13;
+		step {&#13;
+			name = "Parse IP addresses"&#13;
+			parse_var_to_var {&#13;
+				from_var_name = "adressesJSON"&#13;
+				to_var_names = table {&#13;
+					name = "addresses"&#13;
+					col_names = "ip_address","netmask","ip_version","nic","correlation_id"&#13;
+				}&#13;
+				parsing_strategy = custom_parsing_strategy {&#13;
+					sys_id = "512a3d5a9f3312003cb191aec32e708a"&#13;
+					rootXpath = "/root"&#13;
+					fields {&#13;
+						field {&#13;
+							col_name = "ip_address"&#13;
+							xpath = "/root/addresses/address/text()"&#13;
+							delimiters = ""&#13;
+							position = 1&#13;
+						}&#13;
+						field {&#13;
+							col_name = "netmask"&#13;
+							xpath = "/root/addresses/mask/text()"&#13;
+							delimiters = ""&#13;
+							position = 1&#13;
+						}&#13;
+						field {&#13;
+							col_name = "ip_version"&#13;
+							xpath = "/root/addresses/family/text()"&#13;
+							delimiters = ""&#13;
+							position = 1&#13;
+						}&#13;
+						field {&#13;
+							col_name = "nic"&#13;
+							xpath = "/root/addresses/ifName/text()"&#13;
+							delimiters = ""&#13;
+							position = 1&#13;
+						}&#13;
+						field {&#13;
+							col_name = "correlation_id"&#13;
+							xpath = "/root/addresses/ifIndex/text()"&#13;
+							delimiters = ""&#13;
+							position = 1&#13;
+						}&#13;
+						field {&#13;
+							col_name = "forEach"&#13;
+							for_each = "forEach"&#13;
+							delimiters = ""&#13;
+							position = 1&#13;
+						}&#13;
+					}&#13;
+				}&#13;
+				if_not_found_do = nop {}&#13;
+			}&#13;
+		}&#13;
+		step {&#13;
+			name = "Filter for IPv4 addresses"&#13;
+			filter {&#13;
+				src_table_name = "addresses"&#13;
+				target_table_name = "ipv4Addresses"&#13;
+				condition = eq {&#13;
+					get_attr {"addresses[].ip_version"}&#13;
+					"4"&#13;
+				}&#13;
+			}&#13;
+		}&#13;
+		step {&#13;
+			name = "Filter for private IPv4 addresses"&#13;
+			filter {&#13;
+				src_table_name = "ipv4Addresses"&#13;
+				target_table_name = "privateNetworks"&#13;
+				condition = any {&#13;
+					starts_with {&#13;
+						"10."&#13;
+						get_attr {"ipv4Addresses[].ip_address"}&#13;
+					}&#13;
+					starts_with {&#13;
+						"172.16."&#13;
+						get_attr {"ipv4Addresses[].ip_address"}&#13;
+					}&#13;
+					starts_with {&#13;
+						"172.17."&#13;
+						get_attr {"ipv4Addresses[].ip_address"}&#13;
+					}&#13;
+					starts_with {&#13;
+						"172.18."&#13;
+						get_attr {"ipv4Addresses[].ip_address"}&#13;
+					}&#13;
+					starts_with {&#13;
+						"172.19."&#13;
+						get_attr {"ipv4Addresses[].ip_address"}&#13;
+					}&#13;
+					starts_with {&#13;
+						"172.20."&#13;
+						get_attr {"ipv4Addresses[].ip_address"}&#13;
+					}&#13;
+					starts_with {&#13;
+						"172.21."&#13;
+						get_attr {"ipv4Addresses[].ip_address"}&#13;
+					}&#13;
+					starts_with {&#13;
+						"172.22."&#13;
+						get_attr {"ipv4Addresses[].ip_address"}&#13;
+					}&#13;
+					starts_with {&#13;
+						"172.23."&#13;
+						get_attr {"ipv4Addresses[].ip_address"}&#13;
+					}&#13;
+					starts_with {&#13;
+						"172.24."&#13;
+						get_attr {"ipv4Addresses[].ip_address"}&#13;
+					}&#13;
+					starts_with {&#13;
+						"172.25."&#13;
+						get_attr {"ipv4Addresses[].ip_address"}&#13;
+					}&#13;
+					starts_with {&#13;
+						"172.26."&#13;
+						get_attr {"ipv4Addresses[].ip_address"}&#13;
+					}&#13;
+					starts_with {&#13;
+						"172.27."&#13;
+						get_attr {"ipv4Addresses[].ip_address"}&#13;
+					}&#13;
+					starts_with {&#13;
+						"172.28."&#13;
+						get_attr {"ipv4Addresses[].ip_address"}&#13;
+					}&#13;
+					starts_with {&#13;
+						"172.29."&#13;
+						get_attr {"ipv4Addresses[].ip_address"}&#13;
+					}&#13;
+					starts_with {&#13;
+						"172.30."&#13;
+						get_attr {"ipv4Addresses[].ip_address"}&#13;
+					}&#13;
+					starts_with {&#13;
+						"172.31."&#13;
+						get_attr {"ipv4Addresses[].ip_address"}&#13;
+					}&#13;
+					starts_with {&#13;
+						"192.168."&#13;
+						get_attr {"ipv4Addresses[].ip_address"}&#13;
+					}&#13;
+				}&#13;
+			}&#13;
+		}&#13;
+		step {&#13;
+			name = "Change IPv4 prefix length into mask"&#13;
+			transform {&#13;
+				src_table_name = "ipv4Addresses"&#13;
+				target_table_name = "ipv4Addresses"&#13;
+				operation {set_field {&#13;
+						field_name = "netmask"&#13;
+						value = eval {"javascript: // Convert a CIDR prefix length (e.g. 24) to a dotted-decimal netmask (e.g. 255.255.255.0)&#13;
+
+// Read the prefix length from the pattern variable and make sure it is a string&#13;
+var rawValue = ${ipv4Addresses[].netmask};&#13;
+var prefixText = String(rawValue);&#13;
+
+// Parse the prefix length as a base-10 integer&#13;
+var prefix = parseInt(prefixText, 10);&#13;
+
+// Default result for invalid input&#13;
+var maskString = '';&#13;
+
+// Check that the prefix is a valid number in the range 0-32&#13;
+var isNumber = !isNaN(prefix);&#13;
+var isInRange = false;&#13;
+if (isNumber) {&#13;
+    if (prefix &gt;= 0) {&#13;
+        if (prefix &lt;= 32) {&#13;
+            isInRange = true;&#13;
+        }&#13;
+    }&#13;
+}&#13;
+
+if (isInRange) {&#13;
+    // Build the 32-bit mask; prefix 0 is handled separately,&#13;
+    // because in JavaScript \"x &lt;&lt; 32\" behaves like \"x &lt;&lt; 0\"&#13;
+    var maskValue = 0;&#13;
+    if (prefix &gt; 0) {&#13;
+        var shiftBy = 32 - prefix;&#13;
+        var shifted = 0xFFFFFFFF &lt;&lt; shiftBy;&#13;
+        // Convert the signed 32-bit result to an unsigned value&#13;
+        maskValue = shifted &gt;&gt;&gt; 0;&#13;
+    }&#13;
+
+    // Extract the four octets&#13;
+    var octet1 = (maskValue &gt;&gt;&gt; 24) &amp; 255;&#13;
+    var octet2 = (maskValue &gt;&gt;&gt; 16) &amp; 255;&#13;
+    var octet3 = (maskValue &gt;&gt;&gt; 8) &amp; 255;&#13;
+    var octet4 = maskValue &amp; 255;&#13;
+
+    // Join the octets into the dotted-decimal notation&#13;
+    var part1 = octet1 + '.' + octet2;&#13;
+    var part2 = octet3 + '.' + octet4;&#13;
+    maskString = part1 + '.' + part2;&#13;
+}&#13;
+
+// Last expression = value returned by the EVAL step&#13;
+rtrn = maskString;"}&#13;
+					}}&#13;
+			}&#13;
+		}&#13;
+		step {&#13;
+			name = "Filter for IPv6 addresses"&#13;
+			filter {&#13;
+				src_table_name = "addresses"&#13;
+				target_table_name = "ipv6Addresses"&#13;
+				condition = eq {&#13;
+					get_attr {"addresses[].ip_version"}&#13;
+					"6"&#13;
+				}&#13;
+			}&#13;
+		}&#13;
+		step {&#13;
+			name = "Set IPv4 addresses"&#13;
+			union {&#13;
+				table1_name = "ipv4Addresses"&#13;
+				table2_name = "ipv6Addresses"&#13;
+				result_table_name = "cmdb_ci_ip_address"&#13;
+			}&#13;
+		}&#13;
+		step {&#13;
+			name = "Create relationships &amp; references"&#13;
+			relation_reference {&#13;
+				table1_name = "cmdb_ci_ip_firewall"&#13;
+				table2_name = "cmdb_ci_ip_address"&#13;
+				result_table_name = "address_to_firewall"&#13;
+				unmatched_lines = keep&#13;
+				relation_type = "Owns::Owned by"&#13;
+				ref_direction = parentToChild&#13;
+				ref_field_name = "nic"&#13;
+			}&#13;
+		}&#13;
+		step {&#13;
+			name = "Create references"&#13;
+			relation_reference {&#13;
+				table1_name = "cmdb_ci_network_adapter"&#13;
+				key1_name = "correlation_id"&#13;
+				table2_name = "cmdb_ci_ip_address"&#13;
+				key2_name = "correlation_id"&#13;
+				result_table_name = "ip_to_nic"&#13;
+				unmatched_lines = remove&#13;
+				ref_direction = childToParent&#13;
+				ref_field_name = "nic"&#13;
+			}&#13;
+		}&#13;
+		step {&#13;
+			name = "Recalculate private IPv4 networks"&#13;
+			transform {&#13;
+				src_table_name = "privateNetworks"&#13;
+				target_table_name = "privateNetworks"&#13;
+				operation {set_field {&#13;
+						field_name = "network"&#13;
+						value = eval {"javascript: var rtrn;&#13;
+
+// Values substituted by Pattern Builder (no quotes around the placeholders).&#13;
+var ipAddress = ${privateNetworks[].ip_address};&#13;
+var subnetBits = ${privateNetworks[].netmask};&#13;
+
+// Normalize the inputs.&#13;
+var ipText = String(ipAddress);&#13;
+var prefixLength = parseInt(subnetBits, 10);&#13;
+
+// Split the dotted address into four octet strings.&#13;
+var ipParts = ipText.split('.');&#13;
+var ipBinary = '';&#13;
+
+// Convert each octet to an 8-digit binary string and append it.&#13;
+for (var a = 0; a &lt; 4; a++) {&#13;
+    var octetText = ipParts[a];&#13;
+    var octetNumber = parseInt(octetText, 10);&#13;
+    var octetBinary = octetNumber.toString(2);&#13;
+    var octetPadded = '00000000' + octetBinary;&#13;
+    var octetEight = octetPadded.slice(-8);&#13;
+    ipBinary += octetEight;&#13;
+}&#13;
+
+// Build the subnet mask: prefixLength ones followed by zeros, 32 characters in total.&#13;
+var subnetMask = '';&#13;
+for (var b = 0; b &lt; 32; b++) {&#13;
+    if (b &lt; prefixLength) {&#13;
+        subnetMask += '1';&#13;
+    } else {&#13;
+        subnetMask += '0';&#13;
+    }&#13;
+}&#13;
+
+// Bitwise AND of address and mask, character by character.&#13;
+// The '0'/'1' characters are implicitly converted to numbers by the &amp; operator.&#13;
+var networkBinary = '';&#13;
+for (var c = 0; c &lt; 32; c++) {&#13;
+    var ipBit = ipBinary.charAt(c);&#13;
+    var maskBit = subnetMask.charAt(c);&#13;
+    var andBit = ipBit &amp; maskBit;&#13;
+    networkBinary += andBit;&#13;
+}&#13;
+
+// Convert each group of 8 bits back to a decimal octet.&#13;
+var networkParts = [];&#13;
+for (var d = 0; d &lt; 32; d += 8) {&#13;
+    var octetBits = networkBinary.substr(d, 8);&#13;
+    var octetValue = parseInt(octetBits, 2);&#13;
+    networkParts.push(octetValue);&#13;
+}&#13;
+
+// Join the octets into the final network address.&#13;
+var networkAddress = networkParts.join('.');&#13;
+
+rtrn = networkAddress;"}&#13;
+					}}&#13;
+			}&#13;
+		}&#13;
+		step {&#13;
+			name = "Set IP networks for discovery"&#13;
+			transform {&#13;
+				src_table_name = "privateNetworks"&#13;
+				target_table_name = "cmdb_ci_ip_network"&#13;
+				operation {&#13;
+					set_field {&#13;
+						field_name = "subnet"&#13;
+						value = concat {&#13;
+							get_attr {"privateNetworks[].network"}&#13;
+							"/"&#13;
+							get_attr {"privateNetworks[].netmask"}&#13;
+						}&#13;
+					}&#13;
+					set_field {&#13;
+						field_name = "router_interface_type"&#13;
+						value = eval {"javascript: var rtrn;&#13;
+var interfaceType = '';&#13;
+var nic = ${privateNetworks[].nic};&#13;
+
+if (nic.includes('.')) {&#13;
+  interfaceType =  'virtual';&#13;
+} else {&#13;
+  interfaceType =  'physical';&#13;
+}&#13;
+
+rtrn = interfaceType;"}&#13;
+					}&#13;
+					set_field {&#13;
+						field_name = "discover"&#13;
+						value = "true"&#13;
+					}&#13;
+					set_field {&#13;
+						field_name = "state"&#13;
+						value = "Processed"&#13;
+					}&#13;
+					set_field {&#13;
+						field_name = "short_description"&#13;
+						value = get_attr {"privateNetworks[].nic"}&#13;
+					}&#13;
+				}&#13;
+			}&#13;
+		}&#13;
+		step {&#13;
+			name = "Create relationships"&#13;
+			relation_reference {&#13;
+				table1_name = "cmdb_ci_ip_network"&#13;
+				table2_name = "cmdb_ci_ip_firewall"&#13;
+				result_table_name = "network_to_firewall"&#13;
+				unmatched_lines = keep&#13;
+				ref_direction = parentToChild&#13;
+				ref_field_name = "router"&#13;
+			}&#13;
+		}&#13;
+	}&#13;
+}&#13;
+</ndl><parent/><serverless>false</serverless><source/><sys_class_name>sa_pattern</sys_class_name><sys_created_by>karel.benes</sys_created_by><sys_created_on>2026-10-16 19:28:55</sys_created_on><sys_domain>global</sys_domain><sys_domain_path>/</sys_domain_path><sys_id>5324df9c97c8d3dca4c3ba6de053afcb</sys_id><sys_mod_count>40</sys_mod_count><sys_name>Barracuda CloudGen Firewall</sys_name><sys_overrides/><sys_package display_value="Global" source="global">global</sys_package><sys_policy/><sys_replace/><sys_scope display_value="Global">global</sys_scope><sys_update_name>sa_pattern_5324df9c97c8d3dca4c3ba6de053afcb</sys_update_name><sys_updated_by>karel.benes</sys_updated_by><sys_updated_on>2026-11-01 09:03:13</sys_updated_on><version/></sa_pattern></record_update>]]></payload>
+<payload_hash>1833817023</payload_hash>
+<remote_update_set display_value="Barracuda CloudGen Firewall">6a8e53d997d8d3d0a4c3ba6de053af36</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>karel.benes</sys_created_by>
+<sys_created_on>2026-11-01 09:03:50</sys_created_on>
+<sys_id>a28e53d997d8d3d0a4c3ba6de053af37</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>1a196593e2f0000001</sys_recorded_at>
+<sys_updated_by>karel.benes</sys_updated_by>
+<sys_updated_on>2026-11-01 09:03:50</sys_updated_on>
+<table/>
+<target_name>Barracuda CloudGen Firewall</target_name>
+<type>Discovery Patterns</type>
+<update_domain>global</update_domain>
+<update_guid>116e5f5942d8d3d0157ceb02145b51d1</update_guid>
+<update_guid_history>116e5f5942d8d3d0157ceb02145b51d1:1833817023,ee72770d7b949f90ccd5c7c4a1d9c9c5:-1032620213,fba51c9b8acc5310a7ec2f1abb5d4313:614699832,aa3ec89fa7c8531087086d843079b3e9:1030470246,34bb8cd375c8531006891d1ec057efa0:-808126304,e10b405338c8531077cb43d04fdc0285:-1157904677,647c37c7184453101cc7d3441fc68a3a:345942992,b8e4b30bc0405310720260faf399efb9:-923992617,e723774395405310563ad1a53e18ec71:-612565859,e5fe7e87724017102e198ad724817c44:-1541561157,3eab588bfa401310874d500dde6427b1:1199208189,2e1b58c330401310b9ea1ba4de7cf4e4:-1680853927,ade14c0b8c441b1047ac612235cebf37:439275290,0260888b13041b107ac02b73e6b5feba:-1756310142,e6efbf76a9041b100a19e2f6760506b7:-2009870616,2a7fbb722b041b104430d8d36c31a19c:1440208312,50bd7bb60cc01b102854d8b803710bef:1105562401,f874f33e15001b1015e68dd2abe51b15:2089365176,e754b7fab6001b1064c2a3b70e5b62df:-1265987337,0863ff721e001b10bcd255e3d812db12:-1101062615,dc92f3ba43ccd7106444a3ab53fdbfd1:147094791,fc82fb7af9ccd7102d4626bbca4b7707:-1441331994,58d133f27bccd71033eb62ef4c289a3f:-1776659970,d0de63f27e8cd710fff7aa1258f42865:-400252545,facd6fbe644cd71006d757b910a73f1d:-1111425697,4cfb67f6324cd71076bc60f6eca1dc98:1911226288,319baf76694cd71070ba942ac47c388a:1968553636,151f973e1408d710145d11667dfb08df:1911226288,e9c75f721184d7107c0ce41e7e7bc923:-1794762474,e5059fbab404d710f0b7073530ea8d21:2085766954,aae4d7badc04d710c745a42bed7357a0:2143094302,780393f29f04d710c4de4bf0a89aeedf:1286096197,ee629b327d04d710d9d59a735050fdf8:-65066295,28e88a7e038857103dd590a68e8ac945:-241395306,5417f172e4045710d5497253dd9967cc:1039872044,6ec247a6a8845310cf53b39b4e97368e:-1846745517,e79bcb288484d7dcdd962695944b635f:1103263731,238b07a85384d7dcd83101ee7db906d1:562529353,c94b0b64ba84d7dc693612f372ac488b:1012921753,729847ac7444d7dc8e7719e7c2e8a216:1060438434,1324df9c2ec8d3dc89d80c3b69b07cd1:2127567105</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+</unload>

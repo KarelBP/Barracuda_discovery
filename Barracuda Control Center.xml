@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="UTF-8"?><unload unload_date="2026-11-01 09:06:09">
+<sys_remote_update_set action="INSERT_OR_UPDATE">
+<application display_value="Global">global</application>
+<application_name>Global</application_name>
+<application_scope>global</application_scope>
+<application_version/>
+<collisions/>
+<commit_date/>
+<deleted/>
+<description>Discovery pattern for Barracuda Control Center</description>
+<inserted/>
+<name>Barracuda Control Center</name>
+<origin_sys_id/>
+<parent display_value=""/>
+<release_date/>
+<remote_base_update_set display_value=""/>
+<remote_parent_id/>
+<remote_sys_id>b5ce5b5d97d8d3d0a4c3ba6de053af13</remote_sys_id>
+<state>loaded</state>
+<summary/>
+<sys_class_name>sys_remote_update_set</sys_class_name>
+<sys_created_by>karel.benes</sys_created_by>
+<sys_created_on>2026-11-01 09:06:08</sys_created_on>
+<sys_id>581fd311971cd3d0a4c3ba6de053affa</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_updated_by>karel.benes</sys_updated_by>
+<sys_updated_on>2026-11-01 09:06:08</sys_updated_on>
+<update_set display_value=""/>
+<update_source display_value=""/>
+<updated/>
+</sys_remote_update_set>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>sa_pattern_8eddc66697041310a4c3ba6de053af67</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sa_pattern"><sa_pattern action="INSERT_OR_UPDATE"><active>true</active><ci_type>cmdb_ci_firewall_manager</ci_type><cpattern_type>3</cpattern_type><description/><directory>false</directory><enforce_proc_classy>false</enforce_proc_classy><invoke_per_account>false</invoke_per_account><metadata_id>8eddc66697041310a4c3ba6de053af67</metadata_id><name>Barracuda Control Center</name><ndl>pattern {&#13;
+	metadata {&#13;
+		id = "8eddc66697041310a4c3ba6de053af67"&#13;
+		name = "Barracuda Control Center"&#13;
+		description = "Discovery pattern for Barracuda Control Center"&#13;
+		citype = "cmdb_ci_firewall_manager"&#13;
+	}&#13;
+	identification {&#13;
+		name = "discovery"&#13;
+		entry_point {type = "*"}&#13;
+		find_process_strategy {strategy = NONE}&#13;
+		step {&#13;
+			name = "Get status map"&#13;
+			custom_operation {&#13;
+				attributes {&#13;
+					attribute {&#13;
+						name = "required_authentication"&#13;
+						value = "true"&#13;
+					}&#13;
+					attribute {&#13;
+						name = "url"&#13;
+						value = concat {&#13;
+							"https://"&#13;
+							get_attr {"cc"}&#13;
+							":"&#13;
+							get_attr {"port"}&#13;
+							"/rest/cc/v1/ranges/1/statusmap?expand=true"&#13;
+						}&#13;
+					}&#13;
+					attribute {&#13;
+						name = "headers"&#13;
+						value = "Accept: application/json"&#13;
+					}&#13;
+				}&#13;
+				sys_id_op = "99a9f95a9f3312003cb191aec32e70e9"&#13;
+				to_var_names = "SystemVariable"&#13;
+				parsing_strategy = empty_strategy {}&#13;
+				if_not_found_do = nop {}&#13;
+				is_paginated = 0&#13;
+			}&#13;
+		}&#13;
+		step {&#13;
+			name = "Transform raw status map"&#13;
+			set_attr {&#13;
+				"statusMap"&#13;
+				eval {"javascript: // Raw JSON text returned by the statusmap call&#13;
+var rawText = ${SystemVariable};&#13;
+
+// Parse the text into a JavaScript object&#13;
+var parsed = JSON.parse(rawText);&#13;
+
+// Output array: one object per box (firewall / control center)&#13;
+var result = [];&#13;
+
+// Level 1: cluster names are keys&#13;
+var clusterNames = Object.keys(parsed);&#13;
+
+for (var i = 0; i &lt; clusterNames.length; i++) {&#13;
+    var clusterName = clusterNames[i];&#13;
+    var clusterObject = parsed[clusterName];&#13;
+
+    // Level 2: box names are keys&#13;
+    var boxNames = Object.keys(clusterObject);&#13;
+
+    for (var j = 0; j &lt; boxNames.length; j++) {&#13;
+        var boxName = boxNames[j];&#13;
+        var boxObject = clusterObject[boxName];&#13;
+
+        // New flat object with the keys promoted to attributes&#13;
+        var boxCopy = {};&#13;
+        boxCopy.cluster = clusterName;&#13;
+        boxCopy.name = boxName;&#13;
+
+        // Copy all original attributes (nested objects are kept as they are)&#13;
+        var attributeNames = Object.keys(boxObject);&#13;
+
+        for (var k = 0; k &lt; attributeNames.length; k++) {&#13;
+            var attributeName = attributeNames[k];&#13;
+            var attributeValue = boxObject[attributeName];&#13;
+            boxCopy[attributeName] = attributeValue;&#13;
+        }&#13;
+
+        result.push(boxCopy);&#13;
+    }&#13;
+}&#13;
+
+// Serialize back to text so the next step can parse it with JSONPath&#13;
+var resultText = JSON.stringify(result);&#13;
+
+rtrn = resultText;"}&#13;
+			}&#13;
+		}&#13;
+		step {&#13;
+			name = "Parse status map"&#13;
+			parse_var_to_var {&#13;
+				from_var_name = "statusMap"&#13;
+				to_var_names = table {&#13;
+					name = "devices"&#13;
+					col_names = "name","serial","mgmtIp","accessIp","model","phionVersion"&#13;
+				}&#13;
+				parsing_strategy = custom_parsing_strategy {&#13;
+					sys_id = "512a3d5a9f3312003cb191aec32e708a"&#13;
+					rootXpath = "/root"&#13;
+					fields {&#13;
+						field {&#13;
+							col_name = "name"&#13;
+							xpath = "/root/*/name/text()"&#13;
+							delimiters = ""&#13;
+							position = 1&#13;
+						}&#13;
+						field {&#13;
+							col_name = "serial"&#13;
+							xpath = "/root/*/serial/text()"&#13;
+							delimiters = ""&#13;
+							position = 1&#13;
+						}&#13;
+						field {&#13;
+							col_name = "mgmtIp"&#13;
+							xpath = "/root/*/mgmtIp/text()"&#13;
+							delimiters = ""&#13;
+							position = 1&#13;
+						}&#13;
+						field {&#13;
+							col_name = "accessIp"&#13;
+							xpath = "/root/*/accessIp/text()"&#13;
+							delimiters = ""&#13;
+							position = 1&#13;
+						}&#13;
+						field {&#13;
+							col_name = "model"&#13;
+							xpath = "/root/*/model/text()"&#13;
+							delimiters = ""&#13;
+							position = 1&#13;
+						}&#13;
+						field {&#13;
+							col_name = "phionVersion"&#13;
+							xpath = "/root/*/phionVersion/text()"&#13;
+							delimiters = ""&#13;
+							position = 1&#13;
+						}&#13;
+						field {&#13;
+							col_name = "forEach"&#13;
+							for_each = "forEach"&#13;
+							delimiters = ""&#13;
+							position = 1&#13;
+						}&#13;
+					}&#13;
+				}&#13;
+				if_not_found_do = nop {}&#13;
+			}&#13;
+		}&#13;
+		step {&#13;
+			name = "Filter for CC"&#13;
+			filter {&#13;
+				src_table_name = "devices"&#13;
+				target_table_name = "controlCenter"&#13;
+				condition = any {&#13;
+					starts_with {&#13;
+						"VC"&#13;
+						get_attr {"devices[].model"}&#13;
+					}&#13;
+					is_empty {get_attr {"devices[].mgmtIp"}}&#13;
+				}&#13;
+			}&#13;
+		}&#13;
+		step {&#13;
+			name = "Insert CC into CMDB"&#13;
+			transform {&#13;
+				src_table_name = "controlCenter"&#13;
+				target_table_name = "cmdb_ci_firewall_manager"&#13;
+				operation {&#13;
+					set_field {&#13;
+						field_name = "host"&#13;
+						value = get_attr {"controlCenter[].name"}&#13;
+					}&#13;
+					set_field {&#13;
+						field_name = "name"&#13;
+						value = get_attr {"controlCenter[].name"}&#13;
+					}&#13;
+					set_field {&#13;
+						field_name = "hostname"&#13;
+						value = get_attr {"controlCenter[].name"}&#13;
+					}&#13;
+					set_field {&#13;
+						field_name = "serial_number"&#13;
+						value = get_attr {"controlCenter[].serial"}&#13;
+					}&#13;
+					set_field {&#13;
+						field_name = "ip_address"&#13;
+						value = get_attr {"controlCenter[].accessIp"}&#13;
+					}&#13;
+					set_field {&#13;
+						field_name = "model_id"&#13;
+						value = get_attr {"controlCenter[].model"}&#13;
+					}&#13;
+					set_field {&#13;
+						field_name = "model_number"&#13;
+						value = get_attr {"controlCenter[].model"}&#13;
+					}&#13;
+					set_field {&#13;
+						field_name = "manufacturer"&#13;
+						value = "Barracuda Networks, Inc."&#13;
+					}&#13;
+					set_field {&#13;
+						field_name = "firmware_version"&#13;
+						value = get_attr {"controlCenter[].phionVersion"}&#13;
+					}&#13;
+				}&#13;
+			}&#13;
+		}&#13;
+		step {&#13;
+			name = "Filter for firewalls"&#13;
+			filter {&#13;
+				src_table_name = "devices"&#13;
+				target_table_name = "devices"&#13;
+				condition = any {&#13;
+					not_starts_with {&#13;
+						"VC"&#13;
+						get_attr {"devices[].model"}&#13;
+					}&#13;
+					is_not_empty {get_attr {"devices[].mgmtIp"}}&#13;
+				}&#13;
+			}&#13;
+		}&#13;
+		step {&#13;
+			name = "Insert firewalls into CMDB"&#13;
+			transform {&#13;
+				src_table_name = "devices"&#13;
+				target_table_name = "cmdb_ci_ip_firewall"&#13;
+				operation {&#13;
+					set_field {&#13;
+						field_name = "name"&#13;
+						value = get_attr {"devices[].name"}&#13;
+					}&#13;
+					set_field {&#13;
+						field_name = "serial_number"&#13;
+						value = get_attr {"devices[].serial"}&#13;
+					}&#13;
+					set_field {&#13;
+						field_name = "ip_address"&#13;
+						value = get_attr {"devices[].mgmtIp"}&#13;
+					}&#13;
+					set_field {&#13;
+						field_name = "model_id"&#13;
+						value = get_attr {"devices[].model"}&#13;
+					}&#13;
+					set_field {&#13;
+						field_name = "model_number"&#13;
+						value = get_attr {"devices[].model"}&#13;
+					}&#13;
+					set_field {&#13;
+						field_name = "manufacturer"&#13;
+						value = "Barracuda Networks, Inc."&#13;
+					}&#13;
+					set_field {&#13;
+						field_name = "firmware_version"&#13;
+						value = get_attr {"devices[].phionVersion"}&#13;
+					}&#13;
+				}&#13;
+			}&#13;
+		}&#13;
+		step {&#13;
+			name = "Create relationships"&#13;
+			relation_reference {&#13;
+				table1_name = "cmdb_ci_ip_firewall"&#13;
+				table2_name = "cmdb_ci_firewall_manager"&#13;
+				result_table_name = "firewalls_to_cc"&#13;
+				unmatched_lines = keep&#13;
+				relation_type = "Managed by::Manages"&#13;
+				ref_direction = parentToChild&#13;
+				ref_field_name = ""&#13;
+			}&#13;
+		}&#13;
+	}&#13;
+}&#13;
+</ndl><parent/><serverless>true</serverless><source/><sys_class_name>sa_pattern</sys_class_name><sys_created_by>karel.benes</sys_created_by><sys_created_on>2026-10-23 14:08:00</sys_created_on><sys_domain>global</sys_domain><sys_domain_path>/</sys_domain_path><sys_id>8eddc66697041310a4c3ba6de053af67</sys_id><sys_mod_count>15</sys_mod_count><sys_name>Barracuda Control Center</sys_name><sys_overrides/><sys_package display_value="Global" source="global">global</sys_package><sys_policy/><sys_replace/><sys_scope display_value="Global">global</sys_scope><sys_update_name>sa_pattern_8eddc66697041310a4c3ba6de053af67</sys_update_name><sys_updated_by>karel.benes</sys_updated_by><sys_updated_on>2026-11-01 09:05:38</sys_updated_on><version/></sa_pattern></record_update>]]></payload>
+<payload_hash>-523664708</payload_hash>
+<remote_update_set display_value="Barracuda Control Center">581fd311971cd3d0a4c3ba6de053affa</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>karel.benes</sys_created_by>
+<sys_created_on>2026-11-01 09:06:08</sys_created_on>
+<sys_id>9c1fd311971cd3d0a4c3ba6de053affa</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>1a1965b75e90000001</sys_recorded_at>
+<sys_updated_by>karel.benes</sys_updated_by>
+<sys_updated_on>2026-11-01 09:06:08</sys_updated_on>
+<table/>
+<target_name>Barracuda Control Center</target_name>
+<type>Discovery Patterns</type>
+<update_domain>global</update_domain>
+<update_guid>7cfed3dd9ad8d3d078a94512524b50f3</update_guid>
+<update_guid_history>7cfed3dd9ad8d3d078a94512524b50f3:-523664708,6e82bb0d00949f90f1b58a73c15d7c22:-890713286,147376665c40531034fabc7b2044bd2e:224012327,1a823a628c405310ff12609f261496e5:-1148883465,6dca226e598c1310317e9a2173f57f95:1937527778,ea68a62a964c1310cd70408c6bc0983e:32925942,7f1726ae950c1310758fb4eeb3cdc348:1308736063,e4fcdeae3b481310749bf9951be282d6:-280240112,168c12eab7481310a0a5e43980e42f02:-1435769583,84699e22b2081310fdaa862829286bac:-1466750032,ef499a22cc081310b9afa54ceeb7860e:427055901,aae1d2264a841310ae1981eb16ea4cc2:688520698,e0905aaebd4413105362a4e68204a302:-1727533837,94ffce2ad84413101054c9044c308e06:-649463519,54fd4ea6b1041310116a281f5607d04e:-182698719,d3dd82a6090413104b9090ebade4c782:387311704</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+</unload>

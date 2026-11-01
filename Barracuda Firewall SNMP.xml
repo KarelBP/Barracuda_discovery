@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?><unload unload_date="2026-11-01 09:29:37">
+<sys_remote_update_set action="INSERT_OR_UPDATE">
+<application display_value="Global">global</application>
+<application_name>Global</application_name>
+<application_scope>global</application_scope>
+<application_version/>
+<collisions/>
+<commit_date/>
+<deleted/>
+<description>SNMP Classifier, OID and probe to launch discovery of Barracuda Firewalls</description>
+<inserted/>
+<name>Barracuda Firewall SNMP</name>
+<origin_sys_id/>
+<parent display_value=""/>
+<release_date/>
+<remote_base_update_set display_value=""/>
+<remote_parent_id/>
+<remote_sys_id>19cf5311971cd3d0a4c3ba6de053affa</remote_sys_id>
+<state>loaded</state>
+<summary/>
+<sys_class_name>sys_remote_update_set</sys_class_name>
+<sys_created_by>karel.benes</sys_created_by>
+<sys_created_on>2026-11-01 09:29:36</sys_created_on>
+<sys_id>887467dd97dcd3d0a4c3ba6de053afdf</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_updated_by>karel.benes</sys_updated_by>
+<sys_updated_on>2026-11-01 09:29:36</sys_updated_on>
+<update_set display_value=""/>
+<update_source display_value=""/>
+<updated/>
+</sys_remote_update_set>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>discovery_classy_snmp_6cb703a89744d7dca4c3ba6de053af35</name>
+<payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="discovery_classy_snmp"&gt;&lt;discovery_classy_snmp action="INSERT_OR_UPDATE"&gt;&lt;active&gt;true&lt;/active&gt;&lt;disabled&gt;false&lt;/disabled&gt;&lt;manufacturer/&gt;&lt;match_criteria&gt;Any&lt;/match_criteria&gt;&lt;model/&gt;&lt;name&gt;Barracuda Firewall&lt;/name&gt;&lt;order&gt;100&lt;/order&gt;&lt;script&gt;&lt;![CDATA[// This script gets run when something gets classified]]&gt;&lt;/script&gt;&lt;sys_class_name&gt;discovery_classy_snmp&lt;/sys_class_name&gt;&lt;sys_created_by&gt;karel.benes&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2026-10-17 13:13:18&lt;/sys_created_on&gt;&lt;sys_id&gt;6cb703a89744d7dca4c3ba6de053af35&lt;/sys_id&gt;&lt;sys_mod_count&gt;4&lt;/sys_mod_count&gt;&lt;sys_name&gt;Barracuda Firewall&lt;/sys_name&gt;&lt;sys_package display_value="Global" source="global"&gt;global&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_scope display_value="Global"&gt;global&lt;/sys_scope&gt;&lt;sys_update_name&gt;discovery_classy_snmp_6cb703a89744d7dca4c3ba6de053af35&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;karel.benes&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2026-11-01 09:11:17&lt;/sys_updated_on&gt;&lt;table&gt;cmdb_ci_ip_firewall&lt;/table&gt;&lt;/discovery_classy_snmp&gt;&lt;sys_es_latest_script action="INSERT_OR_UPDATE"&gt;&lt;id&gt;6cb703a89744d7dca4c3ba6de053af35&lt;/id&gt;&lt;sys_created_by&gt;karel.benes&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2026-10-17 13:13:18&lt;/sys_created_on&gt;&lt;sys_id&gt;6ec70ba89744d7dca4c3ba6de053afb2&lt;/sys_id&gt;&lt;sys_mod_count&gt;0&lt;/sys_mod_count&gt;&lt;sys_updated_by&gt;karel.benes&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2026-10-17 13:13:18&lt;/sys_updated_on&gt;&lt;table&gt;discovery_classy_snmp&lt;/table&gt;&lt;use_es_latest&gt;true&lt;/use_es_latest&gt;&lt;/sys_es_latest_script&gt;&lt;/record_update&gt;</payload>
+<payload_hash>1689739550</payload_hash>
+<remote_update_set display_value="Barracuda Firewall SNMP">887467dd97dcd3d0a4c3ba6de053afdf</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>karel.benes</sys_created_by>
+<sys_created_on>2026-11-01 09:29:36</sys_created_on>
+<sys_id>4c7467dd97dcd3d0a4c3ba6de053afe0</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>1a19660a0e10000001</sys_recorded_at>
+<sys_updated_by>karel.benes</sys_updated_by>
+<sys_updated_on>2026-11-01 09:29:36</sys_updated_on>
+<table>cmdb_ci_ip_firewall</table>
+<target_name>Barracuda Firewall</target_name>
+<type>SNMP Classification</type>
+<update_domain>global</update_domain>
+<update_guid>af3063ddb6d8d3d0312e746a9e5f72a5</update_guid>
+<update_guid_history>af3063ddb6d8d3d0312e746a9e5f72a5:1689739550,7030271d2a1cd3d00ac54d5d2d424a54:-789453699,d2de05580c549b50d5c564e29bcf0cd1:1689739550,8d3b49183fd09b5025c7abdef3e68b1a:-845189149,bec70ba8e044d7dcb9aed11f8b5ac8b9:1689739550</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>discovery_snmp_oid_de73231497ccd3dca4c3ba6de053af3c</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="discovery_snmp_oid"><discovery_snmp_oid action="INSERT_OR_UPDATE"><active>true</active><classifier display_value="Barracuda Firewall">6cb703a89744d7dca4c3ba6de053af35</classifier><manufacturer>Barracuda Networks, Inc.</manufacturer><model/><oid>1.3.6.1.4.1.10704.1</oid><operator>Starts with</operator><sys_class_name>discovery_snmp_oid</sys_class_name><sys_created_by>karel.benes</sys_created_by><sys_created_on>2026-10-16 20:36:57</sys_created_on><sys_id>de73231497ccd3dca4c3ba6de053af3c</sys_id><sys_mod_count>9</sys_mod_count><sys_name/><sys_package display_value="Global" source="global">global</sys_package><sys_policy/><sys_scope display_value="Global">global</sys_scope><sys_update_name>discovery_snmp_oid_de73231497ccd3dca4c3ba6de053af3c</sys_update_name><sys_updated_by>karel.benes</sys_updated_by><sys_updated_on>2026-11-01 09:12:14</sys_updated_on><table>cmdb_ci_ip_firewall</table></discovery_snmp_oid></record_update>]]></payload>
+<payload_hash>585590778</payload_hash>
+<remote_update_set display_value="Barracuda Firewall SNMP">887467dd97dcd3d0a4c3ba6de053afdf</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>karel.benes</sys_created_by>
+<sys_created_on>2026-11-01 09:29:36</sys_created_on>
+<sys_id>807467dd97dcd3d0a4c3ba6de053afe1</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>1a1966180cb0000001</sys_recorded_at>
+<sys_updated_by>karel.benes</sys_updated_by>
+<sys_updated_on>2026-11-01 09:29:36</sys_updated_on>
+<table>cmdb_ci_ip_firewall</table>
+<target_name/>
+<type>SNMP OID Classification</type>
+<update_domain>global</update_domain>
+<update_guid>2570abdd3b1cd3d00e7dcf762a8e255c</update_guid>
+<update_guid_history>2570abdd3b1cd3d00e7dcf762a8e255c:585590778,1e6067dde01cd3d0fa490e98dbefcf03:1506668741,0deec55820549b5092957c25c3cf012b:585590778,d0ccc99c79149b50670b5212cdb3ecbf:-1907334320,539e74cb51cc131094605cd3c022747e:585590778,a13983606b84d7dcc5d66f4877627e22:2070533303,4228872c4a44d7dc204355a21e80fc23:-2113680536,c777c3686744d7dceaa7da6cb66eb649:2018472487,ac54eb54640017dcd5930090e77fca01:-800147645,f3b36790700017dc230edc1cb49cfde3:-200299730</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>discovery_classifier_probe_aae78fa89744d7dca4c3ba6de053afca</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="discovery_classifier_probe"><discovery_classifier_probe action="INSERT_OR_UPDATE"><active>true</active><child display_value="Horizontal Pattern">4f64c6389f230200fe2ab0aec32e7068</child><classy display_value="Barracuda Firewall">6cb703a89744d7dca4c3ba6de053af35</classy><condition_script/><name>HorizontalDiscoveryProbe-Horizontal Patt</name><pattern display_value="Barracuda CloudGen Firewall">5324df9c97c8d3dca4c3ba6de053afcb</pattern><phase>identification</phase><priority/><supersedes/><sys_class_name>discovery_classifier_probe</sys_class_name><sys_created_by>karel.benes</sys_created_by><sys_created_on>2026-10-17 13:13:50</sys_created_on><sys_domain>global</sys_domain><sys_domain_path>/</sys_domain_path><sys_id>aae78fa89744d7dca4c3ba6de053afca</sys_id><sys_mod_count>4</sys_mod_count><sys_name>Barracuda Firewall.Horizontal Pattern</sys_name><sys_overrides/><sys_package display_value="Global" source="global">global</sys_package><sys_policy/><sys_scope display_value="Global">global</sys_scope><sys_update_name>discovery_classifier_probe_aae78fa89744d7dca4c3ba6de053afca</sys_update_name><sys_updated_by>karel.benes</sys_updated_by><sys_updated_on>2026-11-01 09:19:45</sys_updated_on></discovery_classifier_probe></record_update>]]></payload>
+<payload_hash>-2009445491</payload_hash>
+<remote_update_set display_value="Barracuda Firewall SNMP">887467dd97dcd3d0a4c3ba6de053afdf</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>karel.benes</sys_created_by>
+<sys_created_on>2026-11-01 09:29:36</sys_created_on>
+<sys_id>cc7467dd97dcd3d0a4c3ba6de053afdf</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>1a1966860070000001</sys_recorded_at>
+<sys_updated_by>karel.benes</sys_updated_by>
+<sys_updated_on>2026-11-01 09:29:36</sys_updated_on>
+<table/>
+<target_name>HorizontalDiscoveryProbe-Horizontal Patt</target_name>
+<type>Classifier Probe</type>
+<update_domain>global</update_domain>
+<update_guid>af2223d53f9cd3d0005ad93192ef8b09</update_guid>
+<update_guid_history>af2223d53f9cd3d0005ad93192ef8b09:-2009445491,0a22af95a19cd3d0a69922308ffe5483:-1222851329,8108cbe87244d7dcf7569549eb340180:2065466104,2bf74be84c44d7dc52c3b1dfbbeb99c3:-1791400822,aee78fa82b44d7dc3b30339cb4cfaccf:301122482</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+</unload>

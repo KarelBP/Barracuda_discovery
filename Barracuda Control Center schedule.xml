@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?><unload unload_date="2026-11-01 11:44:19">
+<sys_remote_update_set action="INSERT_OR_UPDATE">
+<application display_value="Global">global</application>
+<application_name>Global</application_name>
+<application_scope>global</application_scope>
+<application_version/>
+<collisions/>
+<commit_date/>
+<deleted/>
+<description>Discovery Schedule, Serverless Execution Pattern and Connection &amp; Credential Alias for Barracuda Control Center</description>
+<inserted/>
+<name>Barracuda Control Center schedule</name>
+<origin_sys_id/>
+<parent display_value=""/>
+<release_date/>
+<remote_base_update_set display_value=""/>
+<remote_parent_id/>
+<remote_sys_id>6a6667d5971017d0a4c3ba6de053aff0</remote_sys_id>
+<state>loaded</state>
+<summary/>
+<sys_class_name>sys_remote_update_set</sys_class_name>
+<sys_created_by>karel.benes</sys_created_by>
+<sys_created_on>2026-11-01 11:44:18</sys_created_on>
+<sys_id>4543c865979817d0a4c3ba6de053af87</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_updated_by>karel.benes</sys_updated_by>
+<sys_updated_on>2026-11-01 11:44:18</sys_updated_on>
+<update_set display_value=""/>
+<update_source display_value=""/>
+<updated/>
+</sys_remote_update_set>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>discovery_ptrn_lnch_param_NULL</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="discovery_ptrn_lnch_param"><discovery_ptrn_lnch_param action="INSERT_OR_UPDATE"><param display_value="cc">8cfd06a697041310a4c3ba6de053af84</param><pattern_launcher display_value="">83f2c425979817d0a4c3ba6de053af31</pattern_launcher><sys_class_name>discovery_ptrn_lnch_param</sys_class_name><sys_created_by>karel.benes</sys_created_by><sys_created_on>2026-11-01 11:43:18</sys_created_on><sys_domain>global</sys_domain><sys_domain_path/><sys_id>NULL</sys_id><sys_mod_count>0</sys_mod_count><sys_name/><sys_overrides/><sys_package display_value="Global" source="global">global</sys_package><sys_policy/><sys_scope display_value="Global">global</sys_scope><sys_update_name>discovery_ptrn_lnch_param_</sys_update_name><sys_updated_by>karel.benes</sys_updated_by><sys_updated_on>2026-11-01 11:43:18</sys_updated_on><value/></discovery_ptrn_lnch_param></record_update>]]></payload>
+<payload_hash>1863433306</payload_hash>
+<remote_update_set display_value="Barracuda Control Center schedule">4543c865979817d0a4c3ba6de053af87</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>karel.benes</sys_created_by>
+<sys_created_on>2026-11-01 11:44:18</sys_created_on>
+<sys_id>0943c865979817d0a4c3ba6de053af88</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>1a196ebcdcd0000001</sys_recorded_at>
+<sys_updated_by>karel.benes</sys_updated_by>
+<sys_updated_on>2026-11-01 11:44:18</sys_updated_on>
+<table/>
+<target_name/>
+<type>Discovery Pattern Parameters</type>
+<update_domain>global</update_domain>
+<update_guid>d2034c25ef9817d0374d9046aeb70d7f</update_guid>
+<update_guid_history>d2034c25ef9817d0374d9046aeb70d7f:1863433306,1e034c251d9817d0eef2ad10660c537a:-854472775,e25fc6e20f44131030de9a7b1c1c9391:-1530840828,ee5fc6e2a54413100c85e56f2daf4d8c:46220387</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>discovery_schedule_508288a1979817d0a4c3ba6de053af81</name>
+<payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update sys_domain="global" table="discovery_schedule"&gt;&lt;discovery_schedule action="INSERT_OR_UPDATE"&gt;&lt;accel_config/&gt;&lt;active&gt;true&lt;/active&gt;&lt;advanced&gt;false&lt;/advanced&gt;&lt;behavior/&gt;&lt;business_calendar/&gt;&lt;cert_discovery_type&gt;url&lt;/cert_discovery_type&gt;&lt;cert_discovery_url_batch_size&gt;1000&lt;/cert_discovery_url_batch_size&gt;&lt;ci_id/&gt;&lt;ci_type&gt;cmdb_ci_appl_dot_net&lt;/ci_type&gt;&lt;condition/&gt;&lt;conditional&gt;false&lt;/conditional&gt;&lt;credential_aliases&gt;c69fca6697441310a4c3ba6de053af46&lt;/credential_aliases&gt;&lt;disco_run_type&gt;on_demand&lt;/disco_run_type&gt;&lt;discover&gt;Hostless&lt;/discover&gt;&lt;discovery_agent&gt;mid&lt;/discovery_agent&gt;&lt;entered_run_end/&gt;&lt;entered_run_start/&gt;&lt;entered_time/&gt;&lt;even_if_canceled&gt;true&lt;/even_if_canceled&gt;&lt;include_alive&gt;false&lt;/include_alive&gt;&lt;include_endpoint_https_urls&gt;false&lt;/include_endpoint_https_urls&gt;&lt;location/&gt;&lt;log_state_changes&gt;false&lt;/log_state_changes&gt;&lt;max_drift/&gt;&lt;max_idle/&gt;&lt;max_run&gt;1970-01-01 02:00:00&lt;/max_run&gt;&lt;mid_cluster/&gt;&lt;mid_select_method&gt;auto_select&lt;/mid_select_method&gt;&lt;mid_server/&gt;&lt;name&gt;Barracuda Control Center&lt;/name&gt;&lt;offset/&gt;&lt;offset_type&gt;0&lt;/offset_type&gt;&lt;quick_start&gt;false&lt;/quick_start&gt;&lt;repeat_every/&gt;&lt;run_after/&gt;&lt;run_as display_value="Karel Benes"&gt;126d34a797164310a4c3ba6de053af25&lt;/run_as&gt;&lt;run_as_tz/&gt;&lt;run_dayofmonth&gt;1&lt;/run_dayofmonth&gt;&lt;run_dayofweek&gt;1&lt;/run_dayofweek&gt;&lt;run_daysofweek/&gt;&lt;run_end/&gt;&lt;run_month/&gt;&lt;run_period/&gt;&lt;run_start&gt;2026-11-01 11:40:58&lt;/run_start&gt;&lt;run_time&gt;1969-12-31 23:00:00&lt;/run_time&gt;&lt;run_type&gt;on_demand&lt;/run_type&gt;&lt;run_weekinmonth/&gt;&lt;script&gt;&lt;![CDATA[var rt = new global.DiscoveryScheduleRunType(current.disco_run_type + ''); if (rt.match() || new global.DiscoveryJob(job).isRunOnce()) { var dd = new global.Discovery(); dd.discoveryStartJob(); }]]&gt;&lt;/script&gt;&lt;service_attributes/&gt;&lt;service_discovery&gt;ci_type&lt;/service_discovery&gt;&lt;service_group_attributes/&gt;&lt;service_group_table&gt;cmdb_ci_service_group&lt;/service_group_table&gt;&lt;service_table&gt;cmdb_ci_service_discovered&lt;/service_table&gt;&lt;shazzam_batch_size&gt;1000&lt;/shazzam_batch_size&gt;&lt;shazzam_cluster_support&gt;true&lt;/shazzam_cluster_support&gt;&lt;sys_class_name&gt;discovery_schedule&lt;/sys_class_name&gt;&lt;sys_created_by&gt;karel.benes&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2026-11-01 11:41:40&lt;/sys_created_on&gt;&lt;sys_domain&gt;global&lt;/sys_domain&gt;&lt;sys_id&gt;508288a1979817d0a4c3ba6de053af81&lt;/sys_id&gt;&lt;sys_mod_count&gt;1&lt;/sys_mod_count&gt;&lt;sys_name&gt;Barracuda Control Center&lt;/sys_name&gt;&lt;sys_package display_value="Global" source="global"&gt;global&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_scope display_value="Global"&gt;global&lt;/sys_scope&gt;&lt;sys_update_name&gt;discovery_schedule_508288a1979817d0a4c3ba6de053af81&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;karel.benes&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2026-11-01 11:42:22&lt;/sys_updated_on&gt;&lt;time_zone/&gt;&lt;upgrade_safe&gt;false&lt;/upgrade_safe&gt;&lt;use_snmp_version&gt;all&lt;/use_snmp_version&gt;&lt;vm_run/&gt;&lt;was_created_by_system&gt;false&lt;/was_created_by_system&gt;&lt;/discovery_schedule&gt;&lt;/record_update&gt;</payload>
+<payload_hash>-515782053</payload_hash>
+<remote_update_set display_value="Barracuda Control Center schedule">4543c865979817d0a4c3ba6de053af87</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>karel.benes</sys_created_by>
+<sys_created_on>2026-11-01 11:44:18</sys_created_on>
+<sys_id>4d43c865979817d0a4c3ba6de053af88</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>1a196eaf2070000001</sys_recorded_at>
+<sys_updated_by>karel.benes</sys_updated_by>
+<sys_updated_on>2026-11-01 11:44:18</sys_updated_on>
+<table/>
+<target_name>Barracuda Control Center</target_name>
+<type>Discovery Schedule</type>
+<update_domain>global</update_domain>
+<update_guid>ecd2cce1179817d0e8b0c4b5f14c6312</update_guid>
+<update_guid_history>ecd2cce1179817d0e8b0c4b5f14c6312:-515782053,16a2c0e1209817d016667b03f34189f1:83624774</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>sys_alias_c69fca6697441310a4c3ba6de053af46</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_alias"><sys_alias action="INSERT_OR_UPDATE"><configuration_template/><connection_type>http_connection</connection_type><description/><id>Alias_Barracuda_CC_credential</id><is_internal>false</is_internal><multiple_connections>false</multiple_connections><name>Alias_Barracuda_CC_credential</name><parent/><retry_policy display_value="Default HTTP Retry Policy">ef751ff07301330025d71afe2ff6a7f9</retry_policy><sys_class_name>sys_alias</sys_class_name><sys_created_by>karel.benes</sys_created_by><sys_created_on>2026-10-23 14:15:54</sys_created_on><sys_id>c69fca6697441310a4c3ba6de053af46</sys_id><sys_mod_count>5</sys_mod_count><sys_name>Alias_Barracuda_CC_credential</sys_name><sys_package display_value="Global" source="global">global</sys_package><sys_policy/><sys_scope display_value="Global">global</sys_scope><sys_update_name>sys_alias_c69fca6697441310a4c3ba6de053af46</sys_update_name><sys_updated_by>karel.benes</sys_updated_by><sys_updated_on>2026-11-01 11:42:51</sys_updated_on><type>credential</type></sys_alias></record_update>]]></payload>
+<payload_hash>-2064038738</payload_hash>
+<remote_update_set display_value="Barracuda Control Center schedule">4543c865979817d0a4c3ba6de053af87</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>karel.benes</sys_created_by>
+<sys_created_on>2026-11-01 11:44:18</sys_created_on>
+<sys_id>8143c865979817d0a4c3ba6de053af89</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>1a196eb64400000001</sys_recorded_at>
+<sys_updated_by>karel.benes</sys_updated_by>
+<sys_updated_on>2026-11-01 11:44:18</sys_updated_on>
+<table/>
+<target_name>Alias_Barracuda_CC_credential</target_name>
+<type>Connection &amp; Credential Aliases</type>
+<update_domain>global</update_domain>
+<update_guid>fbe24425649817d0b6eb38a2c0dcd0d2</update_guid>
+<update_guid_history>fbe24425649817d0b6eb38a2c0dcd0d2:-2064038738,92e24425c89817d0b1f46668a72f9653:-414202326,fdc6ef19151017d096369cfb9df32699:-2064038738,bbb6a3590a1017d06cb0ee3d61400283:-414202326,1e3420978d4493109b05022ebc6824af:-2064038738,02af06a6974413109ace9b4dbe75a0d3:-1552643231</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>discovery_ptrn_hostless_lchr_83f2c425979817d0a4c3ba6de053af31</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="discovery_ptrn_hostless_lchr"><discovery_ptrn_hostless_lchr action="INSERT_OR_UPDATE"><active>true</active><cmdb_ci/><name>Barracuda Control Center</name><pattern display_value="Barracuda Control Center">8eddc66697041310a4c3ba6de053af67</pattern><run_child_patterns>false</run_child_patterns><schedule display_value="Barracuda Control Center">508288a1979817d0a4c3ba6de053af81</schedule><sys_class_name>discovery_ptrn_hostless_lchr</sys_class_name><sys_created_by>karel.benes</sys_created_by><sys_created_on>2026-11-01 11:43:18</sys_created_on><sys_domain>global</sys_domain><sys_id>83f2c425979817d0a4c3ba6de053af31</sys_id><sys_mod_count>0</sys_mod_count><sys_name>Barracuda Control Center</sys_name><sys_package display_value="Global" source="global">global</sys_package><sys_policy/><sys_scope display_value="Global">global</sys_scope><sys_update_name>discovery_ptrn_hostless_lchr_83f2c425979817d0a4c3ba6de053af31</sys_update_name><sys_updated_by>karel.benes</sys_updated_by><sys_updated_on>2026-11-01 11:43:18</sys_updated_on><use_extended_parameters>false</use_extended_parameters></discovery_ptrn_hostless_lchr></record_update>]]></payload>
+<payload_hash>-1214085462</payload_hash>
+<remote_update_set display_value="Barracuda Control Center schedule">4543c865979817d0a4c3ba6de053af87</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>karel.benes</sys_created_by>
+<sys_created_on>2026-11-01 11:44:18</sys_created_on>
+<sys_id>8943c865979817d0a4c3ba6de053af87</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>1a196ebcdf40000001</sys_recorded_at>
+<sys_updated_by>karel.benes</sys_updated_by>
+<sys_updated_on>2026-11-01 11:44:18</sys_updated_on>
+<table/>
+<target_name>Barracuda Control Center</target_name>
+<type>Serverless Execution Pattern</type>
+<update_domain>global</update_domain>
+<update_guid>1a034c25a59817d0f809e76c01797b83</update_guid>
+<update_guid_history>1a034c25a59817d0f809e76c01797b83:-1214085462</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+</unload>
