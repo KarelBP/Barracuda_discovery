@@ -13,7 +13,7 @@ create the script directly in your ServiceNow instance.
 2.  Copy the contents of this script into a new Pre-Sensor script.
 3.  In the copied script, replace `cmdb_ci_firewall_device` with
     `cmdb_ci_ip_firewall`.
-4.  Associate the new script with your new pattern.
+4.  Associate the new script with your discovery pattern.
 
 ## If the Firewall Audits and Reporting application is not installed
 
